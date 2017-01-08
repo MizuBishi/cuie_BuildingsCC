@@ -49,6 +49,7 @@ public class Floor extends Region {
         layoutControls();
         layoutParts();
         addBindings();
+        addValueChangeListeners();
 
     }
 
@@ -101,7 +102,6 @@ public class Floor extends Region {
             }
         }
 
-
         drawingPane = new Pane();
         drawingPane.setMaxSize(PREFERRED_SIZE, PREFERRED_SIZE);
         drawingPane.setMinSize(PREFERRED_SIZE, PREFERRED_SIZE);
@@ -120,14 +120,34 @@ public class Floor extends Region {
 
     }
 
-    private void addEventHandlers() {
-        floorSlider.setOnMouseDragged(event -> {
-        });
+    private void illuminatedWindows(int value) {
+        double calcFloors = ((double) value / maxValue.getValue()) * 10;
+        int wholeFloors = (int) calcFloors;
+
+        //illuminated Windows back to white
+        for (int y = 0; y < 10; y++) {
+            for (int x = 0; x < 4; x++) {
+                fws[y][x].setFill(Color.rgb(255, 255, 255));
+            }
+        }
+
+        //illuminated Windows in yellow
+        for (int y = 0; y < wholeFloors; y++) {
+            for (int x = 0; x < 4; x++) {
+                fws[y][x].setFill(Color.rgb(255, 231, 0));
+            }
+        }
+
     }
+
+
+
+
 
     private void addValueChangeListeners() {
         currentValue.addListener((observable, oldValue, newValue) -> {
-
+            illuminatedWindows(newValue.intValue());
+            System.err.println(newValue);
         });
     }
 
