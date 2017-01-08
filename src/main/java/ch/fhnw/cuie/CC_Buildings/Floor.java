@@ -17,16 +17,6 @@ public class Floor extends Region {
     private static final double MAXIMUM_SIZE = 800;
 
     //declare all Properties
-    private boolean floor1;
-    private boolean floor2;
-    private boolean floor3;
-    private boolean floor4;
-    private boolean floor5;
-    private boolean floor6;
-    private boolean floor7;
-    private boolean floor8;
-    private boolean floor9;
-    private boolean floor10;
 
     private Label numFloors;
     private Slider floorSlider;
@@ -36,6 +26,8 @@ public class Floor extends Region {
     private final IntegerProperty currentValue = new SimpleIntegerProperty();
 
     private Rectangle r1, r2, r3;
+    // Floor windows. First index is floor (0=lowest), second index left to right.
+    private Rectangle[][] fws;
     private Rectangle f1w1, f1w2, f1w3, f1w4;
     private Rectangle f2w1, f2w2, f2w3, f2w4;
     private Rectangle f3w1, f3w2, f3w3, f3w4;
@@ -99,105 +91,16 @@ public class Floor extends Region {
         r2 = new Rectangle(0, 80, 123, 349);
         r3 = new Rectangle(52, 0, 20, 31);
 
-        //1 Floor
-        f1w1 = new Rectangle(13, 388.128788, 13, 14.8712121);
-        f1w1.setFill(Color.rgb(255, 255, 255));
-        f1w2 = new Rectangle(41, 388.128788, 13, 14.8712121);
-        f1w2.setFill(Color.rgb(255, 255, 255));
-        f1w3 = new Rectangle(69, 388.128788, 13, 14.8712121);
-        f1w3.setFill(Color.rgb(255, 255, 255));
-        f1w4 = new Rectangle(97, 388.128788, 13, 14.8712121);
-        f1w4.setFill(Color.rgb(255, 255, 255));
+       fws = new Rectangle[10][4];
 
-        //2 Floor
-        f2w1 = new Rectangle(13, 356.098485, 13, 14.8712121);
-        f2w1.setFill(Color.rgb(255, 255, 255));
-        f2w2 = new Rectangle(41, 356.098485, 13, 14.8712121);
-        f2w2.setFill(Color.rgb(255, 255, 255));
-        f2w3 = new Rectangle(69, 356.098485, 13, 14.8712121);
-        f2w3.setFill(Color.rgb(255, 255, 255));
-        f2w4 = new Rectangle(97, 356.098485, 13, 14.8712121);
-        f2w4.setFill(Color.rgb(255, 255, 255));
 
-        //3 Floor
-        f3w1 = new Rectangle(13, 324.068182, 13, 14.8712121);
-        f3w1.setFill(Color.rgb(255, 255, 255));
-        f3w2 = new Rectangle(41, 324.068182, 13, 14.8712121);
-        f3w2.setFill(Color.rgb(255, 255, 255));
-        f3w3 = new Rectangle(69, 324.068182, 13, 14.8712121);
-        f3w3.setFill(Color.rgb(255, 255, 255));
-        f3w4 = new Rectangle(97, 324.068182, 13, 14.8712121);
-        f3w4.setFill(Color.rgb(255, 255, 255));
+        for (int y = 0; y<10; y++) {
+            for (int x = 0; x<4; x++) {
+                fws[y][x] = new Rectangle(13 + (x * 28), 388.128788 - (y * 32), 13, 14.8712121);
+                fws[y][x].setFill(Color.rgb(255, 255, 255));
+            }
+        }
 
-        //4 Floor
-        f4w1 = new Rectangle(13, 292.037879, 13, 14.8712121);
-        f4w1.setFill(Color.rgb(255, 255, 255));
-        f4w2 = new Rectangle(41, 292.037879, 13, 14.8712121);
-        f4w2.setFill(Color.rgb(255, 255, 255));
-        f4w3 = new Rectangle(69, 292.037879, 13, 14.8712121);
-        f4w3.setFill(Color.rgb(255, 255, 255));
-        f4w4 = new Rectangle(97, 292.037879, 13, 14.8712121);
-        f4w4.setFill(Color.rgb(255, 255, 255));
-
-        //5 Floor
-        f5w1 = new Rectangle(13, 260.007576, 13, 14.8712121);
-        f5w1.setFill(Color.rgb(255, 255, 255));
-        f5w2 = new Rectangle(41, 260.007576, 13, 14.8712121);
-        f5w2.setFill(Color.rgb(255, 255, 255));
-        f5w3 = new Rectangle(69, 260.007576, 13, 14.8712121);
-        f5w3.setFill(Color.rgb(255, 255, 255));
-        f5w4 = new Rectangle(97, 260.007576, 13, 14.8712121);
-        f5w4.setFill(Color.rgb(255, 255, 255));
-
-        //6 Floor
-        f6w1 = new Rectangle(13, 227.977273, 13, 14.8712121);
-        f6w1.setFill(Color.rgb(255, 255, 255));
-        f6w2 = new Rectangle(41, 227.977273, 13, 14.8712121);
-        f6w2.setFill(Color.rgb(255, 255, 255));
-        f6w3 = new Rectangle(69, 227.977273, 13, 14.8712121);
-        f6w3.setFill(Color.rgb(255, 255, 255));
-        f6w4 = new Rectangle(97, 227.977273, 13, 14.8712121);
-        f6w4.setFill(Color.rgb(255, 255, 255));
-
-        //7 Floor
-        f7w1 = new Rectangle(13, 195.94697, 13, 14.8712121);
-        f7w1.setFill(Color.rgb(255, 255, 255));
-        f7w2 = new Rectangle(41, 195.94697, 13, 14.8712121);
-        f7w2.setFill(Color.rgb(255, 255, 255));
-        f7w3 = new Rectangle(69, 195.94697, 13, 14.8712121);
-        f7w3.setFill(Color.rgb(255, 255, 255));
-        f7w4 = new Rectangle(97, 195.94697, 13, 14.8712121);
-        f7w4.setFill(Color.rgb(255, 255, 255));
-
-        //8 Floor
-        f8w1 = new Rectangle(13, 163.916667, 13, 14.8712121);
-        f8w1.setFill(Color.rgb(255, 255, 255));
-        f8w2 = new Rectangle(41, 163.916667, 13, 14.8712121);
-        f8w2.setFill(Color.rgb(255, 255, 255));
-        f8w3 = new Rectangle(69, 163.916667, 13, 14.8712121);
-        f8w3.setFill(Color.rgb(255, 255, 255));
-        f8w4 = new Rectangle(97, 163.916667, 13, 14.8712121);
-        f8w4.setFill(Color.rgb(255, 255, 255));
-
-        //9 Floor
-        f9w1 = new Rectangle(13, 133.030303, 13, 14.8712121);
-        f9w1.setFill(Color.rgb(255, 255, 255));
-        f9w2 = new Rectangle(41, 133.030303, 13, 14.8712121);
-        f9w2.setFill(Color.rgb(255, 255, 255));
-        f9w3 = new Rectangle(69, 133.030303, 13, 14.8712121);
-        f9w3.setFill(Color.rgb(255, 255, 255));
-        f9w4 = new Rectangle(97, 133.030303, 13, 14.8712121);
-        f9w4.setFill(Color.rgb(255, 255, 255));
-
-        //10 Floor
-        f10w1 = new Rectangle(13, 101, 13, 14.8712121);
-        f10w1.setFill(Color.rgb(255, 255, 255));
-        f10w2 = new Rectangle(41, 101, 13, 14.8712121);
-        f10w2.setFill(Color.rgb(255, 255, 255));
-        f10w3 = new Rectangle(69, 101, 13, 14.8712121);
-        f10w3.setFill(Color.rgb(255, 255, 255));
-        f10w4 = new Rectangle(97, 101, 13, 14.8712121);
-        f10w4.setFill(Color.rgb(255, 255, 255));
 
         drawingPane = new Pane();
         drawingPane.setMaxSize(PREFERRED_SIZE, PREFERRED_SIZE);
@@ -207,18 +110,14 @@ public class Floor extends Region {
     }
 
     private void layoutParts() {
-        drawingPane.getChildren().addAll(r1, r2, r3,
-                f1w1, f1w2, f1w3, f1w4,
-                f2w1, f2w2, f2w3, f2w4,
-                f3w1, f3w2, f3w3, f3w4,
-                f4w1, f4w2, f4w3, f4w4,
-                f5w1, f5w2, f5w3, f5w4,
-                f6w1, f6w2, f6w3, f6w4,
-                f7w1, f7w2, f7w3, f7w4,
-                f8w1, f8w2, f8w3, f8w4,
-                f9w1, f9w2, f9w3, f9w4,
-                f10w1, f10w2, f10w3, f10w4, numFloors, floorSlider);
+        drawingPane.getChildren().addAll(r1, r2, r3, numFloors, floorSlider);
         getChildren().add(drawingPane);
+        for (int y = 0; y<10; y++) {
+            for (int x = 0; x<4; x++) {
+                drawingPane.getChildren().addAll(fws[y][x]);
+            }
+        }
+
     }
 
     private void addEventHandlers() {
@@ -232,29 +131,7 @@ public class Floor extends Region {
         });
     }
 
-    private boolean floorsON (int numFloors) {
-        int currentValue = numFloors;
-        if (currentValue >= 90 && currentValue <= 100) {
-            floor10 = true;
-            f10w1.setFill(Color.rgb(255, 231, 0));
-        } else if (currentValue >= 80 && currentValue < 90) {
-        } else if (currentValue >= 70 && currentValue < 80) {
-        } else if (currentValue >= 60 && currentValue < 70) {
-        } else if (currentValue >= 50 && currentValue < 60) {
-        } else if (currentValue >= 40 && currentValue < 50) {
-        } else if (currentValue >= 30 && currentValue < 40) {
-        } else if (currentValue >= 20 && currentValue < 30) {
-        } else if (currentValue >= 10 && currentValue < 20) {
-        } else if (currentValue >= 0 && currentValue < 10) {
-            f1w1.setFill(Color.rgb(255, 231, 0));
-            f1w2.setFill(Color.rgb(255, 231, 0));
-            f1w2.setFill(Color.rgb(255, 231, 0));
-            f1w2.setFill(Color.rgb(255, 231, 0));
 
-        }
-    return currentValue > 0;
-
-    }
 
     private void layoutControls() {
         setPadding(new Insets(10));
