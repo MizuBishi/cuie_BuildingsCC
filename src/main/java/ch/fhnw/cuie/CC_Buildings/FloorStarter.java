@@ -10,14 +10,14 @@ public class FloorStarter extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent rootPanel = new ch.fhnw.cuie.module03.led.Floor();
+		Parent rootPanel = new Floor();
 
 		Scene scene = new Scene(rootPanel);
 
 		primaryStage.setTitle("Floors");
 		primaryStage.setScene(scene);
-		primaryStage.setWidth(300);
-		primaryStage.setHeight(300);
+		primaryStage.setWidth(400);
+		primaryStage.setHeight(600);
 
 		primaryStage.show();
 	}
