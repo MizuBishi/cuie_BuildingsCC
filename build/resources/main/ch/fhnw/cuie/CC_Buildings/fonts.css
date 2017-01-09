@@ -1,10 +1,12 @@
 @font-face {
     font-family: 'FontAwesome';
+        font-size: 40px;
     src: url("/fonts/fontawesome-webfont.ttf");
 }
 
 @font-face {
     font-family: 'Roboto Regular';
+    font-size: 40px;
     src: url(/fonts/Roboto/Roboto-Regular.ttf);
 }
 

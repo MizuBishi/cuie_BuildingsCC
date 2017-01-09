@@ -9,7 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.TextAlignment;
+
 
 
 public class Floor extends Region {
@@ -21,10 +21,11 @@ public class Floor extends Region {
     //declare all Properties
 
     private Label numFloors;
+    private Label labelFloors;
     private Slider floorSlider;
 
     private final IntegerProperty minValue    = new SimpleIntegerProperty(0);
-    private final IntegerProperty maxValue     = new SimpleIntegerProperty(100);
+    private final IntegerProperty maxValue     = new SimpleIntegerProperty(160);
     private final IntegerProperty currentValue = new SimpleIntegerProperty();
 
     private Rectangle r1, r2, r3;
@@ -68,25 +69,35 @@ public class Floor extends Region {
         numFloors.setMaxWidth(Double.MAX_VALUE);
         numFloors.setAlignment(Pos.CENTER);
         numFloors.setTextFill(Color.rgb(255, 255, 255));
-
-        floorSlider = new Slider(0, 100, 20);
-        floorSlider.setLayoutX(0.00);
-        floorSlider.setLayoutY(-20.00);
-        floorSlider.setPrefHeight(14.8712121);
-        floorSlider.setPrefWidth(123.00);
-
-        //Label
         numFloors.setLayoutX(35.0);
         numFloors.setLayoutY(41.0);
         numFloors.setPrefHeight(33.0);
         numFloors.setPrefWidth(54.00);
+        numFloors.getStyleClass().add("numFloorsLabel");
+
+        labelFloors = new Label ("Number of Floors");
+        labelFloors.setLayoutX(0.00);
+        labelFloors.setLayoutY(440.00);
+        labelFloors.setPrefHeight(14.8712121);
+        labelFloors.setPrefWidth(123.00);
+        labelFloors.getStyleClass().add("labelFloorsLabel");
+
+
+        floorSlider = new Slider(0, 160, 20);
+        floorSlider.setLayoutX(0.00);
+        floorSlider.setLayoutY(460.00);
+        floorSlider.setPrefHeight(14.8712121);
+        floorSlider.setPrefWidth(123.00);
+        floorSlider.getStyleClass().add("floorSliderStyle");
+
+
 
         //Main Building
         r1 = new Rectangle(30, 31, 64, 49);
         r1.setFill(Color.rgb(64, 64, 64));
         r2 = new Rectangle(0, 80, 123, 349);
         r2.setFill(Color.rgb(64, 64, 64));
-        r3 = new Rectangle(52, 0, 20, 31);
+        r3 = new Rectangle(52, 1, 20, 31);
         r3.setFill(Color.rgb(64, 64, 64));
 
         fws = new Rectangle[10][4];
@@ -107,7 +118,7 @@ public class Floor extends Region {
     }
 
     private void layoutParts() {
-        drawingPane.getChildren().addAll(r1, r2, r3, numFloors, floorSlider);
+        drawingPane.getChildren().addAll(r1, r2, r3, numFloors, floorSlider, labelFloors);
         getChildren().add(drawingPane);
         for (int y = 0; y<10; y++) {
             for (int x = 0; x<4; x++) {
