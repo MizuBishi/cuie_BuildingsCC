@@ -63,12 +63,11 @@ public class Floor extends Region {
     }
 
     private void initializeParts() {
-        double center = getPrefWidth() * 0.5;
 
         numFloors = new Label();
         numFloors.setMaxWidth(Double.MAX_VALUE);
         numFloors.setAlignment(Pos.CENTER);
-        numFloors.setTextFill(Color.rgb(0, 0, 0));
+        numFloors.setTextFill(Color.rgb(255, 255, 255));
 
         floorSlider = new Slider(0, 100, 20);
         floorSlider.setLayoutX(0.00);
@@ -77,7 +76,6 @@ public class Floor extends Region {
         floorSlider.setPrefWidth(123.00);
 
         //Label
-        numFloors = new Label("Floors");
         numFloors.setLayoutX(35.0);
         numFloors.setLayoutY(41.0);
         numFloors.setPrefHeight(33.0);
@@ -85,10 +83,13 @@ public class Floor extends Region {
 
         //Main Building
         r1 = new Rectangle(30, 31, 64, 49);
+        r1.setFill(Color.rgb(64, 64, 64));
         r2 = new Rectangle(0, 80, 123, 349);
+        r2.setFill(Color.rgb(64, 64, 64));
         r3 = new Rectangle(52, 0, 20, 31);
+        r3.setFill(Color.rgb(64, 64, 64));
 
-       fws = new Rectangle[10][4];
+        fws = new Rectangle[10][4];
 
 
         for (int y = 0; y<10; y++) {
@@ -148,7 +149,20 @@ public class Floor extends Region {
         });
     }
 
+    /**
+     * Returns the number of floors of this building (see {@link #setValue(int)}.
+     */
+    public int getValue() {
+        return currentValue.getValue();
+    }
 
+    /**
+     * Sets number of floors of this building. The number of illuminated windows corresponds to the number of floors
+     * (highest building = all windows illuminated, lowest building = no windows illuminated).
+     */
+    public void setValue(int newValue) {
+        currentValue.setValue(newValue);
+    }
 
     private void layoutControls() {
         setPadding(new Insets(10));
@@ -183,42 +197,13 @@ public class Floor extends Region {
 
     }
 
-    public double getMinValue() {
-        return minValue.get();
-    }
-
     public IntegerProperty minValueProperty() {
         return minValue;
-    }
-
-    public void setMinValue(int minValue) {
-        this.minValue.set(minValue);
-    }
-
-    public double getMaxValue() {
-        return maxValue.get();
     }
 
     public IntegerProperty maxValueProperty() {
         return maxValue;
     }
 
-    public void setMaxValue(int maxValue) {
-        this.maxValue.set(maxValue);
-    }
 
-    public double getCurrentValue() {
-        return currentValue.get();
-    }
-
-    public IntegerProperty currentValueProperty() {
-        return currentValue;
-    }
-
-    public void setCurrentValue(int currentValue) {
-        this.currentValue.set(currentValue);
-    }
 }
-
-
-
