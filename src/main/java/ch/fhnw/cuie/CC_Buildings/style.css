@@ -11,5 +11,42 @@
 
 .floorSliderStyle {
 
+}
+.floorSliderStyle .thumb {
+    -fx-background-color:
+            linear-gradient(to bottom, derive(-fx-text-box-border, -20%), derive(-fx-text-box-border, -30%)),
+            -fx-inner-border,
+            -fx-body-color;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 1.0em;
+    -fx-padding: 0.583333em;  /* 7 */
+    -fx-effect: dropshadow(two-pass-box , rgba(0, 0, 0, 0.1), 5, 0.0 , 0, 2);
+}
 
+
+.floorSliderStyle .thumb:focused {
+    -fx-background-color:
+            -fx-focus-color,
+            derive(-fx-color,-36%),
+            derive(-fx-color,73%),
+            linear-gradient(to bottom, derive(-fx-color,-19%),derive(-fx-color,61%));
+    -fx-background-insets: -1.4, 0, 1, 2;
+}
+
+.floorSliderStyle .track {
+    -fx-background-color: rgba(64, 64,64, 0.9);
+    -fx-background-insets: 0 0 -1 0, 0, 1;
+    -fx-background-radius: 0.05em, 0.05em, 0.05em; /* 3 3 2 */
+    -fx-padding: 0.05em; /* 3 */
+}
+
+.floorSliderStyle:vertical .track {
+    -fx-background-color: rgba(64, 64,64, 0.9);
+}
+
+.floorSliderStyle .axis {
+    -fx-tick-label-fill: derive(-fx-text-background-color, 30%);
+    -fx-tick-length: 5px;
+    -fx-minor-tick-length: 3px;
+    -fx-border-color: null;
 }
