@@ -2,12 +2,14 @@ package ch.fhnw.cuie.CC_Buildings;
 
 import javafx.beans.property.*;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.TextAlignment;
 
 
 public class Floor extends Region {
@@ -26,18 +28,8 @@ public class Floor extends Region {
     private final IntegerProperty currentValue = new SimpleIntegerProperty();
 
     private Rectangle r1, r2, r3;
-    // Floor windows. First index is floor (0=lowest), second index left to right.
+    // Floor windows. First index is floor (0=lowest), second index windows left to right.
     private Rectangle[][] fws;
-    private Rectangle f1w1, f1w2, f1w3, f1w4;
-    private Rectangle f2w1, f2w2, f2w3, f2w4;
-    private Rectangle f3w1, f3w2, f3w3, f3w4;
-    private Rectangle f4w1, f4w2, f4w3, f4w4;
-    private Rectangle f5w1, f5w2, f5w3, f5w4;
-    private Rectangle f6w1, f6w2, f6w3, f6w4;
-    private Rectangle f7w1, f7w2, f7w3, f7w4;
-    private Rectangle f8w1, f8w2, f8w3, f8w4;
-    private Rectangle f9w1, f9w2, f9w3, f9w4;
-    private Rectangle f10w1, f10w2, f10w3, f10w4;
 
     //needed for resizing
     private Pane drawingPane;
@@ -74,6 +66,10 @@ public class Floor extends Region {
         double center = getPrefWidth() * 0.5;
 
         numFloors = new Label();
+        numFloors.setMaxWidth(Double.MAX_VALUE);
+        numFloors.setAlignment(Pos.CENTER);
+        numFloors.setTextFill(Color.rgb(0, 0, 0));
+
         floorSlider = new Slider(0, 100, 20);
         floorSlider.setLayoutX(0.00);
         floorSlider.setLayoutY(-20.00);
@@ -123,6 +119,8 @@ public class Floor extends Region {
     private void illuminatedWindows(int value) {
         double calcFloors = ((double) value / maxValue.getValue()) * 10;
         int wholeFloors = (int) calcFloors;
+        double calcWindows = (calcFloors - wholeFloors) * 4;
+
 
         //illuminated Windows back to white
         for (int y = 0; y < 10; y++) {
@@ -131,18 +129,17 @@ public class Floor extends Region {
             }
         }
 
-        //illuminated Windows in yellow
+        //illuminated entire floors in yellow
         for (int y = 0; y < wholeFloors; y++) {
             for (int x = 0; x < 4; x++) {
                 fws[y][x].setFill(Color.rgb(255, 231, 0));
             }
         }
-
+        //illuminate partial floors
+        for (int x = 0; x < calcWindows; x++) {
+            fws[wholeFloors][x].setFill(Color.rgb(255, 231, 0));
+        }
     }
-
-
-
-
 
     private void addValueChangeListeners() {
         currentValue.addListener((observable, oldValue, newValue) -> {
