@@ -1,4 +1,3 @@
-
 .numFloorsLabel {
     -fx-font-size: 30px;
     -fx-font-weight: bold;
@@ -9,9 +8,6 @@
     -fx-font-weight: bold;
 }
 
-.floorSliderStyle {
-
-}
 .floorSliderStyle .thumb {
     -fx-background-color:
             linear-gradient(to bottom, derive(-fx-text-box-border, -20%), derive(-fx-text-box-border, -30%)),
